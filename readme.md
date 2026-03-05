@@ -28,12 +28,12 @@ Built on top of the battle-tested [bignumber.js](https://github.com/MikeMcl/bign
 
 JavaScript's native `Number` type uses IEEE 754 double-precision floating point, which can only safely represent integers up to **9,007,199,254,740,991**. Blockchain platforms like DecentralChain routinely work with values that far exceed this limit:
 
-| Context | Example Value | Safe with `Number`? |
-| --- | --- | --- |
-| Token amounts (8 decimal precision) | `9223372036854775807` | ❌ |
-| Transaction fees | `100000` | ✅ |
-| Aggregate portfolio calculations | `18446744073709551615` | ❌ |
-| Cross-token arithmetic | `1000000000000000000` | ❌ |
+| Context                             | Example Value          | Safe with `Number`? |
+| ----------------------------------- | ---------------------- | ------------------- |
+| Token amounts (8 decimal precision) | `9223372036854775807`  | ❌                  |
+| Transaction fees                    | `100000`               | ✅                  |
+| Aggregate portfolio calculations    | `18446744073709551615` | ❌                  |
+| Cross-token arithmetic              | `1000000000000000000`  | ❌                  |
 
 Using native JavaScript numbers for these values leads to **silent precision loss** — a critical bug in financial applications. `@decentralchain/bignumber` eliminates this risk entirely by providing arbitrary-precision arithmetic with explicit, deterministic behavior.
 
@@ -94,8 +94,7 @@ import { BigNumber } from '@decentralchain/bignumber';
 // Convert a human-readable amount to the on-chain integer representation
 const DECIMALS = 8;
 const humanAmount = '1.5'; // 1.5 DC
-const onChainAmount = new BigNumber(humanAmount)
-  .mul(new BigNumber(10).pow(DECIMALS));
+const onChainAmount = new BigNumber(humanAmount).mul(new BigNumber(10).pow(DECIMALS));
 
 console.log(onChainAmount.toString()); // '150000000'
 ```
@@ -379,16 +378,16 @@ This project enforces strict quality standards to ensure reliability for product
 
 ### Technology Stack
 
-| Category | Technology |
-| --- | --- |
-| Language | TypeScript 5.9 (strict mode) |
-| Runtime | Node.js >= 24 |
-| Module Format | Pure ESM |
-| Build Tool | [tsup](https://tsup.egoist.dev/) |
-| Test Framework | [Vitest](https://vitest.dev/) |
-| Linter | [ESLint](https://eslint.org/) (flat config) |
-| Formatter | [Prettier](https://prettier.io/) |
-| CI/CD | GitHub Actions |
+| Category       | Technology                                  |
+| -------------- | ------------------------------------------- |
+| Language       | TypeScript 5.9 (strict mode)                |
+| Runtime        | Node.js >= 24                               |
+| Module Format  | Pure ESM                                    |
+| Build Tool     | [tsup](https://tsup.egoist.dev/)            |
+| Test Framework | [Vitest](https://vitest.dev/)               |
+| Linter         | [ESLint](https://eslint.org/) (flat config) |
+| Formatter      | [Prettier](https://prettier.io/)            |
+| CI/CD          | GitHub Actions                              |
 
 ## Contributing
 
